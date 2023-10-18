@@ -5,7 +5,7 @@ start:
 	docker-compose up -d
 
 exec:
-	docker exec -it karte_app bash
+	docker exec -it swc_app bash
 
 stop:
 	docker-compose down
