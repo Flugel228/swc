@@ -10,7 +10,7 @@ services:
             - "8876:80"
         depends_on:
             - app
-        container_name: karte_nginx
+        container_name: swc_nginx
 
     app:
         build:
@@ -18,7 +18,7 @@ services:
             dockerfile: _docker/app/Dockerfile
         volumes:
             - ./:/var/www
-        container_name: karte_app
+        container_name: swc_app
 
     db:
         image: mysql:latest
@@ -26,12 +26,12 @@ services:
         volumes:
             - ./tmp/db:/var/lib/mysql
         environment:
-            MYSQL_DATABASE: karte_db
+            MYSQL_DATABASE: swc_db
             MYSQL_ROOT_PASSWORD: root
         ports:
             - "8106:3306"
         command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-        container_name: karte_db
+        container_name: swc_db
 
     db_test:
         image: mysql:latest
@@ -45,16 +45,3 @@ services:
             - "8108:3306"
         command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
         container_name: db_test
-
-    redis:
-        image: redis:alpine
-        restart: always
-        environment:
-            REDIS_USERNAME: admin
-            REDIS_PASSWORD: admin
-        volumes:
-            - ./tmp/redis:/data
-        ports:
-            - "8002:6379"
-        command: redis-server --appendonly yes
-        container_name: karte_redis
