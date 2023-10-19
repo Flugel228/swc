@@ -11,4 +11,8 @@ class EventParticipant extends Model
 
     protected $table = 'event_participants';
 
+    protected $fillable = [
+        'event_id',
+        'user_id',
+    ];
 }
