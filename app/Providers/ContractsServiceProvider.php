@@ -8,17 +8,19 @@ use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class ContractsServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      */
     public function register(): void
     {
+        $this->app->bind(UserServiceContract::class, UserService::class);
+        $this->app->bind(UserRepositoryContract::class, UserRepository::class);
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      */
     public function boot(): void
     {
