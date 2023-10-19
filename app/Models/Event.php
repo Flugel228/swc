@@ -20,6 +20,8 @@ class Event extends Model
         'creator_id',
     ];
 
+    public $timestamps = false;
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id', 'id');
