@@ -17,14 +17,15 @@ class UserService implements UserServiceContract
     {
     }
 
-    public function register(array $data): ?Model
+    public function register(array $data): bool
     {
         $user = $this->getUserRepository()->findByLogin($data['login']);
         if ($user) {
-            return null;
+            return false;
         } else {
             $data['registration_date'] = now();
-            return $this->getUserRepository()->create($data);
+            $this->getUserRepository()->create($data);
+            return true;
         }
     }
 
