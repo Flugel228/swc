@@ -16,11 +16,17 @@ class UserRepository extends CoreRepository implements UserRepositoryContract
         return Model::class;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function create(array $data): Model
     {
         return $this->startConditions()->create($data);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function findByLogin(string $login): ?Model
     {
         return $this->startConditions()->where('login', '=', $login)->first();

@@ -11,9 +11,9 @@ interface UserServiceContract
     /**
      * Registers a user.
      * @param array $data
-     * @return Model|null
+     * @return bool
      */
-    public function register(array $data): ?Model;
+    public function register(array $data): bool;
 
     /**
      * Authorizes the user.

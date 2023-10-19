@@ -19,4 +19,8 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
         Route::post('/register', 'UserController@register');
         Route::post('/login', 'UserController@login');
     });
+
+    Route::group(['prefix' => 'events'], function () {
+        Route::post('/', 'EventController@store');
+    });
 });
