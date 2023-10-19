@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('text');
             $table->date('created_at');
-            $table->unsignedBigInteger('creator_id');
-
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table->foreignId('creator_id')
+                ->index()
+                ->constrained('users')
+                ->cascadeOnDelete();
         });
     }
 
