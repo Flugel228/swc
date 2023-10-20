@@ -21,6 +21,10 @@ Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
     });
 
     Route::group(['prefix' => 'events'], function () {
+        Route::get('/', 'EventController@index');
         Route::post('/', 'EventController@store');
+        Route::delete('/{event}', 'EventController@destroy');
+        Route::post('{event}/participants', 'EventController@addParticipant');
+        Route::post('{event}/participants/delete', 'EventController@deleteParticipant');
     });
 });
