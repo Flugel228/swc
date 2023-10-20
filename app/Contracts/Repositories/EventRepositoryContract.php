@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface EventRepositoryContract
 {
-    public function findById(int $id): Model;
+    public function findById(int $id): ?Model;
 
     /**
      * Get event collection

@@ -18,7 +18,7 @@ class EventRepository extends CoreRepository implements EventRepositoryContract
         return Model::class;
     }
 
-    public function findById(int $id): Model
+    public function findById(int $id): ?Model
     {
         return $this->startConditions()->find($id);
     }
@@ -57,6 +57,6 @@ class EventRepository extends CoreRepository implements EventRepositoryContract
 
     public function delete($id): void
     {
-        $this->startConditions()->delete($id);
+        $this->startConditions()->find($id)->delete();
     }
 }
