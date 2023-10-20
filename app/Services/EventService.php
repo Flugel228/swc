@@ -69,11 +69,10 @@ class EventService implements EventServiceContract
         $user = auth()->user();
         $event = $this->getEventRepository()->findById($id);
 
-        if ($user->id !== $event->creator_id) {
+        if ($event === null || $user->id !== $event->creator_id) {
             return false;
         }
-
-        $this->destroy($id);
+        $this->getEventRepository()->delete($id);
         return true;
     }
 
