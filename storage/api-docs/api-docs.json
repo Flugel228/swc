@@ -1,0 +1,540 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/events": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "List of events",
+                "responses": {
+                    "200": {
+                        "description": "A list of events is provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": "1"
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Some title"
+                                                            },
+                                                            "text": {
+                                                                "type": "string",
+                                                                "example": "Some text"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "example": "12.03.2015"
+                                                            },
+                                                            "participants": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": "1"
+                                                                        },
+                                                                        "first_name": {
+                                                                            "type": "string",
+                                                                            "example": "Michael"
+                                                                        },
+                                                                        "last_name": {
+                                                                            "type": "string",
+                                                                            "example": "Philips"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "meta": {
+                                                    "properties": {
+                                                        "total": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "per_page": {
+                                                            "type": "integer",
+                                                            "example": "10"
+                                                        },
+                                                        "current_page": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "last_page": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "from": {
+                                                            "type": "integer",
+                                                            "example": "1"
+                                                        },
+                                                        "to": {
+                                                            "type": "integer",
+                                                            "example": "2"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "links": {
+                                                    "properties": {
+                                                        "first": {
+                                                            "type": "string",
+                                                            "example": "http://localhost:8876/api/events?page=1"
+                                                        },
+                                                        "last": {
+                                                            "type": "string",
+                                                            "example": "http://localhost:8876/api/events?page=1"
+                                                        },
+                                                        "prev": {
+                                                            "type": "string",
+                                                            "example": "http://localhost:8876/api/events?page=1"
+                                                        },
+                                                        "next": {
+                                                            "type": "string",
+                                                            "example": "http://localhost:8876/api/events?page=2"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Create an event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Some title"
+                                            },
+                                            "text": {
+                                                "type": "string",
+                                                "example": "Some text"
+                                            },
+                                            "creator_id": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Событие было успешно создано!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/events/{event}": {
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Delete an event",
+                "parameters": [
+                    {
+                        "name": "event",
+                        "in": "path",
+                        "description": "Event ID",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Событие успешно удалено."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Вы не являетесь создателем этого события."
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/events/{event}/participants": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Add participant",
+                "parameters": [
+                    {
+                        "name": "event",
+                        "in": "path",
+                        "description": "Event ID",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Вы стали участником события!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/events/{event}/participants/delete": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Add participant",
+                "parameters": [
+                    {
+                        "name": "event",
+                        "in": "path",
+                        "description": "Event ID",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Вы перестали быть участником события!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User registration",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "login": {
+                                                "type": "string",
+                                                "example": "SomeLogin"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "password123"
+                                            },
+                                            "first_name": {
+                                                "type": "string",
+                                                "example": "Michael"
+                                            },
+                                            "last_name": {
+                                                "type": "string",
+                                                "example": "Philips"
+                                            },
+                                            "birthdate": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "14.02.2004"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Вы успешно зарегестрировались!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "This user already exists!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Пользователь с таким логином уже существует"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "login": {
+                                                "type": "string",
+                                                "example": "SomeLogin"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "password123"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Logged In",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "null",
+                                            "example": "null"
+                                        },
+                                        "result": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "first_name": {
+                                                    "type": "string",
+                                                    "example": "Michael"
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "Philips"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Логин или пароль были введены неверно!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

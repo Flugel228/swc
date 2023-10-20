@@ -51,7 +51,7 @@ class UserController extends Controller
             return response()->json([
                 'error' => 'Логин или пароль были введены неверно!',
                 'result' => null,
-            ]);
+            ], 401);
         }
     }
 

@@ -35,6 +35,26 @@ class EventController extends Controller
         ], 201);
     }
 
+    public function destroy(int $id)
+    {
+        $response = $this->getService()->destroy($id);
+        if ($response) {
+            return response()->json([
+                'error' => null,
+                'result' => [
+                    'message' => 'Событие успешно удалено.',
+                ],
+            ]);
+        } else {
+            return response()->json([
+                'error' => [
+                    'message' => 'Вы не являетесь создателем этого события.'
+                ],
+                'result' => null,
+            ], 403);
+        }
+    }
+
     public function addParticipant(int $id): \Illuminate\Http\JsonResponse
     {
         $this->getService()->addParticipant($id);
@@ -55,26 +75,6 @@ class EventController extends Controller
                 'message' => 'Вы перестали быть участником события!',
             ],
         ]);
-    }
-
-    public function destroy(int $id)
-    {
-        $response = $this->getService()->destroy($id);
-        if ($response) {
-            return response()->json([
-                'error' => null,
-                'result' => [
-                    'message' => 'Событие успешно удалено.',
-                ],
-            ]);
-        } else {
-            return response()->json([
-                'error' => [
-                    'message' => 'Вы не являетесь создателем этого события.'
-                ],
-                'result' => null,
-            ], 403);
-        }
     }
 
     /**
