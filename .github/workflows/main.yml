@@ -26,7 +26,7 @@ jobs:
     - name: Start project
       run: make start
     - name: Execute project
-      run: make exec
+      run: docker exec swc_app bash
     - name: Execute composer install
       run: composer install
     - name: Execute tests (Unit and Feature tests)
