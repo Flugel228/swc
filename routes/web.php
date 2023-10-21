@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'App\Http\Controllers\Client'], function () {
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/', 'UserController@register')->name('admin.register');
+    });
 });
