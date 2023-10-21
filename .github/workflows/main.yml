@@ -11,10 +11,27 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-
+      uses: actions/checkout@v3
+    - name: Copy .env file
+      run: cp .env.example .env
+    - name: Modify .env file
+      run: |
+        sed -i 's/DB_HOST=127.0.0.1/DB_HOST=db/' .env
+        sed -i 's/DB_DATABASE=swc/DB_DATABASE=swc_db/' .env
+        sed -i 's/DB_PASSWORD=/DB_DATABASE=root/' .env
     - name: Set up Docker
       run: docker --version
-
     - name: Build Docker Image
       run: make build
+    - name: Start project
+      run: make start
+    - name: Execute project
+      run: make exec
+    - name: Execute composer install
+      run: composer install
+    - name: Execute tests (Unit and Feature tests)
+      run: php artisan test
+    - name: Exit from app
+      run: exit
+    - name: Stop project
+      run: make stop
