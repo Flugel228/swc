@@ -29,6 +29,8 @@ jobs:
       run: docker exec swc_app bash
     - name: Execute composer install
       run: composer install
+    - name: Generate key
+      run: php artisan key:generate
     - name: Execute tests (Unit and Feature tests)
       run: php artisan test
     - name: Exit from app
