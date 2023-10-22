@@ -1,12 +1,25 @@
 import {StandardResponse} from "../../index";
 
-export type RegisterReponse = StandardResponse<RegisterResult>
+// register
+export type RegisterResponse = StandardResponse<RegisterResult>
 
 type RegisterResult = {
-    'message': string
+    message: string
 }
 
 export type RegisterFunctionResponse = {
+    message: string
+    status: number
+}
+
+// login
+export type LoginResponse = StandardResponse<LoginResponse>
+
+type LoginResult = {
+    message: string
+}
+
+export type LoginFunctionResponse = {
     message: string
     status: number
 }
