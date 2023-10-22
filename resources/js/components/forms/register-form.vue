@@ -51,6 +51,8 @@ const rules = computed(() => ({
     },
     password: {
         required: helpers.withMessage('Это поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Минимально допустимая длина 8 символов', minLength(8)),
+        maxLength: helpers.withMessage('Максимально допустимая длина 50 символов', maxLength(50))
     }
 }));
 
