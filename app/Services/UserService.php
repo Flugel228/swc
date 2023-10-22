@@ -29,7 +29,7 @@ class UserService implements UserServiceContract
         }
     }
 
-    public function login(array $data): ?bool
+    public function login(array $data): bool
     {
         if (Auth::attempt($data)) {
             $user = $this->getUserRepository()->findByLogin($data['login']);

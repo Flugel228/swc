@@ -1,7 +1,7 @@
 import {StandardResponse} from "../../index";
 
 // register
-export type RegisterReponse = StandardResponse<RegisterResult>
+export type RegisterResponse = StandardResponse<RegisterResult>
 
 type RegisterResult = {
     message: string

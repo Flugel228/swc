@@ -139,7 +139,7 @@
 
 @section('auth_footer')
     <p class="my-0">
-        <a href="{{ $login_url }}">
+        <a href="{{ route('admin.login') }}">
             Уже есть аккаунт?
         </a>
     </p>

@@ -1,7 +1,12 @@
 import CoreService from "./CoreService";
 import UserServiceContract from "../contracts/services/UserServiceContract";
 import axios from "axios";
-import {LoginFunctionResponse, RegisterFunctionResponse, RegisterReponse} from "../../types/app/services/user-service";
+import {
+    LoginFunctionResponse,
+    LoginResponse,
+    RegisterFunctionResponse,
+    RegisterResponse
+} from "../../types/app/services/user-service";
 import {UserData as RegisterUserData} from "../../types/components/forms/register-form";
 import {UserData as LoginUserData} from "../../types/components/forms/login-form";
 
@@ -15,7 +20,8 @@ class UserService extends CoreService implements UserServiceContract {
 
         if (isFormCorrect) {
             try {
-                const res = await axios.post<RegisterReponse, axios.AxiosResponse<RegisterReponse>, RegisterUserData>('/api/users/register', state)
+                const res = await axios.post<RegisterResponse, axios.AxiosResponse<RegisterResponse>, RegisterUserData>('/api/users/register', state)
+                console.log(res);
                 openModalFunction();
                 return {
                     message: res.data.result.message,
@@ -44,7 +50,7 @@ class UserService extends CoreService implements UserServiceContract {
 
         if (isFormCorrect) {
             try {
-                const res = await axios.post<RegisterReponse, axios.AxiosResponse<RegisterReponse>, LoginUserData>('/api/users/login', state)
+                const res = await axios.post<LoginResponse, axios.AxiosResponse<LoginResponse>, LoginUserData>('/api/users/login', state)
                 openModalFunction();
                 return {
                     message: res.data.result.message,

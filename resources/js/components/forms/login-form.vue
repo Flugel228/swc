@@ -97,7 +97,7 @@ const submitForm = async () => {
                     type="submit"
                     class="btn btn-primary"
                     @click.prevent="submitForm"
-                >Зарегестрироваться
+                >Войти
                 </button>
             </div>
         </div>
