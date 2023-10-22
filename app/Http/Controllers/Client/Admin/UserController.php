@@ -12,4 +12,9 @@ class UserController extends Controller
     {
         return view('client.user.register');
     }
+
+    public function login(): View
+    {
+        return view('client.user.login');
+    }
 }

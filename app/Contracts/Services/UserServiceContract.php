@@ -18,7 +18,7 @@ interface UserServiceContract
     /**
      * Authorizes the user.
      * @param array $data
-     * @return LoginResource|null
+     * @return bool
      */
-    public function login(array $data): ?LoginResource;
+    public function login(array $data): bool;
 }
