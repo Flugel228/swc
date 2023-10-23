@@ -88,7 +88,7 @@
 
 @section('auth_footer')
     <p class="my-0">
-        <a href="{{ route('admin.register') }}">
+        <a href="">
             Нет аккаунта? Зарегистрировать
         </a>
     </p>

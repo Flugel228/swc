@@ -32,9 +32,4 @@ class Event extends Model
     {
         return $this->belongsToMany(User::class, 'event_participants', 'event_id', 'user_id');
     }
-
-    public function getDateAsCarbonAttribute()
-    {
-        return Carbon::parse($this->created_at)->format('m d,Y');
-    }
 }

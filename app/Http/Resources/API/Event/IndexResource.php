@@ -18,7 +18,7 @@ class IndexResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'text' => $this->text,
-            'created_at' => $this->date,
+            'created_at' => $this->created_at,
             'participants' => UserResource::collection($this->participants),
         ];
     }
