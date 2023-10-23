@@ -17,26 +17,24 @@ class UserService implements UserServiceContract
     {
     }
 
-    public function register(array $data): bool
+    public function register(array $data): ?string
     {
         $user = $this->getUserRepository()->findByLogin($data['login']);
         if ($user) {
-            return false;
+            return null;
         } else {
             $data['registration_date'] = now();
-            $this->getUserRepository()->create($data);
-            return true;
+            $user = $this->getUserRepository()->create($data);
+            return auth()->tokenById($user->id);
         }
     }
 
-    public function login(array $data): bool
+    public function login(array $data): ?string
     {
-        if (Auth::attempt($data)) {
-            $user = $this->getUserRepository()->findByLogin($data['login']);
-            auth()->login($user);
-            return true;
+        if (! $token = auth()->attempt($data)) {
+            return null;
         }
-        return false;
+        return $token;
     }
 
     /**

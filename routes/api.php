@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers\API'], function () {
-    Route::group(['prefix' => 'users'], function () {
+
+    Route::group(['middleware' => 'api', 'prefix' => 'users'], function () {
         Route::post('/register', 'UserController@register');
         Route::post('/login', 'UserController@login');
+        Route::post('/me', 'UserController@me');
     });
 
     Route::group(['prefix' => 'events'], function () {

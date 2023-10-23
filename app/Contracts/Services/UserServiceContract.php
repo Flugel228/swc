@@ -2,23 +2,20 @@
 
 namespace App\Contracts\Services;
 
-use App\Http\Resources\API\User\LoginResource;
-use App\Models\User as Model;
-
 interface UserServiceContract
 {
 
     /**
      * Registers a user.
      * @param array $data
-     * @return bool
+     * @return string|null
      */
-    public function register(array $data): bool;
+    public function register(array $data): ?string;
 
     /**
      * Authorizes the user.
      * @param array $data
-     * @return bool
+     * @return string|null
      */
-    public function login(array $data): bool;
+    public function login(array $data): ?string;
 }

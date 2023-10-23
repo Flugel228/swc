@@ -10,6 +10,8 @@ import UserService from "../../app/services/UserService";
 import useModal from "../../composables/modal";
 import {RegisterFunctionResponse} from "../../types/app/services/user-service";
 
+const urlName = ref('');
+
 // initialize modal composables elements
 const { isTheInfoModalVisible, showModalInfo, closeModalInfo } = useModal();
 
@@ -51,7 +53,7 @@ const submitForm = async () => {
     btn.value.disabled = true;
 
     // submit request on the server
-    const res: RegisterFunctionResponse | void = await service.login<typeof v$>(v$, state, showModalInfo);
+    const res: RegisterFunctionResponse | null = await service.login<typeof v$>(v$, state, showModalInfo);
 
     // button activation
     btn.value.disabled = false;
@@ -60,6 +62,10 @@ const submitForm = async () => {
         // setting message
         responseMessage.value = res.message;
     }
+
+    if (res.status === 200) {
+        urlName.value = 'events.index'
+    }
 }
 </script>
 
@@ -67,7 +73,7 @@ const submitForm = async () => {
     <modal
         v-if="isTheInfoModalVisible"
         title="Ответ"
-        @closeModal="closeModalInfo('')"
+        @closeModal="closeModalInfo(urlName)"
     >{{responseMessage  }}</modal>
     <form>
         <div class="input-group mb-3">

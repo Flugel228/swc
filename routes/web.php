@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'App\Http\Controllers\Client'], function () {
-    Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/', 'UserController@login')->name('admin.login');
-        Route::get('/register', 'UserController@register')->name('admin.register');
-    });
+Route::group(['middleware' => 'web', 'namespace' => 'App\Http\Controllers\Client'], function () {
+    Route::get('/{page}', 'MainController@index')->where('page', '.*');
 });
