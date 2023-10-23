@@ -45,11 +45,15 @@ class UserController extends Controller
         if ($response) {
             return response()->json([
                 'error' => null,
-                'result' => $response
+                'result' => [
+                    'message' => 'Вы успешно вошли в аккаунт!'
+                ]
             ]);
         } else {
             return response()->json([
-                'error' => 'Логин или пароль были введены неверно!',
+                'error' => [
+                    'message' => 'Логин или пароль были введены неверно!',
+                ],
                 'result' => null,
             ], 401);
         }

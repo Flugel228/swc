@@ -29,14 +29,14 @@ class UserService implements UserServiceContract
         }
     }
 
-    public function login(array $data): ?LoginResource
+    public function login(array $data): bool
     {
         if (Auth::attempt($data)) {
             $user = $this->getUserRepository()->findByLogin($data['login']);
             auth()->login($user);
-            return LoginResource::make($user);
+            return true;
         }
-        return null;
+        return false;
     }
 
     /**

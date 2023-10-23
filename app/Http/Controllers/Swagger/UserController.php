@@ -70,9 +70,7 @@ use OpenApi\Annotations as OA;
  *         @OA\JsonContent(
  *             @OA\Property(property="error", type="null", example="null"),
  *             @OA\Property(property="result", type="object",
- *                 @OA\Property(property="id", type="integer", example="1"),
- *                 @OA\Property(property="first_name", type="string", example="Michael"),
- *                 @OA\Property(property="last_name", type="string", example="Philips"),
+ *                 @OA\Property(property="message", type="string", example="Вы успешно вошли в аккаунт!")
  *             ),
  *         )
  *     ),

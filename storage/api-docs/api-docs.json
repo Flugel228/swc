@@ -487,17 +487,9 @@
                                         },
                                         "result": {
                                             "properties": {
-                                                "id": {
-                                                    "type": "integer",
-                                                    "example": "1"
-                                                },
-                                                "first_name": {
+                                                "message": {
                                                     "type": "string",
-                                                    "example": "Michael"
-                                                },
-                                                "last_name": {
-                                                    "type": "string",
-                                                    "example": "Philips"
+                                                    "example": "Вы успешно вошли в аккаунт!"
                                                 }
                                             },
                                             "type": "object"
